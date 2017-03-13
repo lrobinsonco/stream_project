@@ -41,6 +41,10 @@ p {
 }
 
 @media (min-width:768px) {
+    #about {
+      padding-top: 50px;
+    }
+
     p {
         margin: 0 0 35px;
         font-size: 20px;
@@ -237,7 +241,7 @@ a:focus, a:hover {
 }
 
 .content-section {
-    padding-top: 100px
+    padding-top: 100px;
 }
 
 .buttonList {
@@ -262,7 +266,7 @@ a:focus, a:hover {
     margin-top: 100px
 }
 
-@media (min-width:767px) {
+@media (min-width:768px) {
     .content-section {
         padding-top: 150px
     }
@@ -295,7 +299,9 @@ a:focus, a:hover {
     color: #000;
     background-color: #42DCA3
 }
-
+.btn-group{
+  padding: 10px;
+}
 
 ul.banner-social-buttons {
     margin-top: 0
