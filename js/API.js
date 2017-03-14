@@ -131,33 +131,36 @@ function init() {
     });
 }
 
+var clearCreek = {clearCreek: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06716500&parameterCd=00060&siteType=ST&siteStatus=all", clearGraph: "http://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06716500&parm_cd=00060&period=7", clearMap: (39.765833, -105.625556), clearLocal: "Clear Creek at Lawson, CO"};
 
-// var clearCreek = "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06716500&parameterCd=00060&siteType=ST&siteStatus=all";
-// var clearGraph = "http://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06716500&parm_cd=00060&period=7";
-// var clearMap = (39.765833, -105.625556);
-//
-// var deckers = 06701900 ;
-// var deckersGraph = "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06701900&parm_cd=00060&period=7";
-// var deckersMap = (39.26, -105.221389);
-// var deckersLocal= "South Platte near Trumbull, CO";
-//
-// var cheesem = 06701900 ;
-// var cheesemanGraph =
+var deckers = {deckers: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06701900&parameterCd=00060&siteType=ST&siteStatus=all", deckersGraph: "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06701900&parm_cd=00060&period=7", deckersMap: (39.26, -105.221389), deckersLocal: "South Platte near Trumbull, CO"};
 
-var waterData = "https://data.colorado.gov/resource/a97x-8zfv.json";
 
-$.get(waterData).then(function(data) {
-  for (var location in data) {
-    if (data.hasOwnProperty(location)) {
+var thompson = {thompson: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06741510&parameterCd=00060&siteType=ST&siteStatus=all", thompsonGraph: "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06741510&parm_cd=00060&period=7", thompsonMap: (40.378611, -105.060556), thompsonLocal: "Big Thompson near Loveland"};
 
+
+var bear = {bear: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06710605&parameterCd=00060&siteType=ST&siteStatus=all", bearGraph: "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06710605&parm_cd=00060&period=7", bearMap: (39.651944, -105.173056), bearLocal: "Bear creek at Morrison, CO"};
+
+
+
+// var waterData = "https://data.colorado.gov/resource/a97x-8zfv.json";
+$(document).ready(function() {
+    console.log("ready");
+    $('.dropdown-menu li').click(function() {
+      var clickSelect =  $(this).attr("data-id");
+        console.log(clickSelect);
+        console.log('click');
+    });
+
+    $.get(flow).then(function(data) {
+
+        var flow = data.value.timeSeries[0].values[0].value[0].value;
+        console.log(flow);
+        showFlow(flow);
+        console.log(data);
+    });
+
+    function showFlow(flow) {
+        $(".flow_rate").html('<span class="poop">' + flow + '</span>');
     }
-  }
-    // var clearFlow = data.value.timeSeries[0].values[0].value[0].value;
-    console.log(waterData);
-    // showFlow(clearFlow);
-    console.log(data);
 });
-
-// function showFlow(clearFlow) {
-//     $(".flow_rate").html('<span class="poop">' + clearFlow + '</span>');
-// }

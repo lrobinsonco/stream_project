@@ -90,13 +90,16 @@
     <section id="about" class="container content-section text-center">
         <div class="buttonList">
             <form>
+              <!--Info buttons with dropdown menu-->
                 <div class="btn-group">
                     <button type="button" data-toggle="dropdown" class="btn btn-info btn-lg dropdown-toggle">South Platte<span class="caret"></span></button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
+                        <li data-id="bearCreek"><a id="bear" href="#">Bear Creek</a></li>
+                        <li data-id="clearCreek"><a id = "clear" href="#">Clear Creek</a></li>
+                        <li data-id="deckersR"><a id = "deckers" href="#">Platte Deckers</a></li>
+                        <li data-id="bigT"><a id ="thompson" href="#">Big Thompson</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="http://www.dwr.state.co.us/SurfaceWater/data/division.aspx?div=1">South Platte Basin Stations</a></li>
                     </ul>
                 </div>
                 <div class="btn-group">
@@ -108,7 +111,6 @@
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </div>
-                <!--Info buttons with dropdown menu-->
                 <div class="btn-group">
                     <button type="button" data-toggle="dropdown" class="btn btn-info btn-lg dropdown-toggle">Colorado <span class="caret"></span></button>
                     <ul class="dropdown-menu">
@@ -149,12 +151,12 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-              <h2 class= "location">Clear Creek at Lawson, CO.</h2>
+              <h2 class= "location"></h2>
               <div id="current_rate" class="flow">
                 <h3 class="flow_title">Current CFS: </h3>
                 <h3 class="flow_rate"></h3>
               </div>
-                <img src="http://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06716500&parm_cd=00060&period=7" class="img-responsive" width="776" height="600" alt="USGS Water-data graph for site 06025500">
+                <img id="graph" src=" " class="img-responsive" width="776" height="600" alt="USGS Water-data graph">
             </div>
         </div>
         <!-- Map Section -->
