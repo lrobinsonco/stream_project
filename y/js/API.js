@@ -185,7 +185,7 @@ $(document).ready(function() {
         $.get(urlFlow).then(function(data) {
 
             var flow = data.value.timeSeries[0].values[0].value[0].value;
-            // console.log(flow);
+            console.log(flow);
             showFlow(flow);
             // console.log(data);
         });
@@ -193,11 +193,9 @@ $(document).ready(function() {
     function graphInfo(clickSelect) {
         var urlGraph = "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=" + clickSelect + "&parm_cd=00060&period=7";
         var result ="<img id=\"graph\" src=\"" + urlGraph + "\" class=\"img-responsive\" width=\"776\" height=\"600\" alt=>";
+        console.log(result);
         $(".graph").append(result);
 
-    }
-    function showFlow(flow) {
-        $(".flow_rate").html('<span class="poop">' + flow + '</span>');
     }
 });
 // $('.dropdown-menu li').click(function(event) {
@@ -233,5 +231,7 @@ $(document).ready(function() {
 //         console.log(data);
 //     });
 //
-
+    function showFlow(flow) {
+        $(".flow_title").html('<span class="poop">' + flow + '</span>');
+    }
 // });
