@@ -131,17 +131,37 @@ function init() {
     });
 }
 
-var clearCreek = {clearCreek: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06716500&parameterCd=00060&siteType=ST&siteStatus=all", clearGraph: "http://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06716500&parm_cd=00060&period=7", clearMap: (39.765833, -105.625556), clearLocal: "Clear Creek at Lawson, CO"};
-
-console.log(clearCreek);
-
-var deckers = {deckers: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06701900&parameterCd=00060&siteType=ST&siteStatus=all", deckersGraph: "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06701900&parm_cd=00060&period=7", deckersMap: (39.26, -105.221389), deckersLocal: "South Platte near Trumbull, CO"};
-
-
-var thompson = {thompson: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06741510&parameterCd=00060&siteType=ST&siteStatus=all", thompsonGraph: "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06741510&parm_cd=00060&period=7", thompsonMap: (40.378611, -105.060556), thompsonLocal: "Big Thompson near Loveland"};
+var clearCreek = {
+    clearCreek: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06716500&parameterCd=00060&siteType=ST&siteStatus=all",
+    clearGraph: "http://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06716500&parm_cd=00060&period=7",
+    clearMap: (39.765833, -105.625556),
+    clearLocal: "Clear Creek at Lawson, CO"
+};
 
 
-var bear = {bear: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06710605&parameterCd=00060&siteType=ST&siteStatus=all", bearGraph: "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06710605&parm_cd=00060&period=7", bearMap: (39.651944, -105.173056), bearLocal: "Bear creek at Morrison, CO"};
+var deckers = {
+    deckers: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06701900&parameterCd=00060&siteType=ST&siteStatus=all",
+    deckersGraph: "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06701900&parm_cd=00060&period=7",
+    deckersMap: (39.26, -105.221389),
+    deckersLocal: "South Platte near Trumbull, CO"
+};
+
+
+var thompson = {
+    thompson: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06741510&parameterCd=00060&siteType=ST&siteStatus=all",
+    thompsonGraph: "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06741510&parm_cd=00060&period=7",
+    thompsonMap: (40.378611, -105.060556),
+    thompsonLocal: "Big Thompson near Loveland"
+};
+
+
+var bear = {
+    bear: "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06710605&parameterCd=00060&siteType=ST&siteStatus=all",
+    bearGraph: "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=06710605&parm_cd=00060&period=7",
+    bearMap: (39.651944, -105.173056),
+    bearLocal: "Bear creek at Morrison, CO"
+};
+
 
 // var waterData = "https://data.colorado.gov/resource/a97x-8zfv.json";
 
@@ -149,26 +169,69 @@ $(document).ready(function() {
     console.log("ready");
     //select element
     $('.dropdown-menu li').click(function(event) {
-      var clickSelect =  $(this).attr("data-id");
-        console.log(clickSelect);
-// set that element to the variable above.
-        if(clickSelect === "bearCreek") {
-          $(".flow_title").val("Bear creek at Morrison, CO");
-        }
-
-
-// append the information to the DOM
+        event.preventDefault();
+        $(".graph").empty();
+        var clickSelect = $(this).attr("data-id");
+        // console.log(clickSelect);
+        flowInfo(clickSelect);
+        graphInfo(clickSelect);
     });
 
-    // $.get().then(function(data) {
-    //
-    //     var flow = data.value.timeSeries[0].values[0].value[0].value;
-    //     console.log(flow);
-    //     showFlow(flow);
-    //     console.log(data);
-    // });
-    //
-    // function showFlow(flow) {
-    //     $(".flow_rate").html('<span class="poop">' + flow + '</span>');
-    // }
+
+    function flowInfo(clickSelect) {
+
+        var urlFlow = "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=" + clickSelect + "&parameterCd=00060&siteType=ST&siteStatus=all";
+
+        $.get(urlFlow).then(function(data) {
+
+            var flow = data.value.timeSeries[0].values[0].value[0].value;
+            console.log(flow);
+            showFlow(flow);
+            // console.log(data);
+        });
+    }
+    function graphInfo(clickSelect) {
+        var urlGraph = "https://waterdata.usgs.gov/nwisweb/graph?agency_cd=USGS&site_no=" + clickSelect + "&parm_cd=00060&period=7";
+        var result ="<img id=\"graph\" src=\"" + urlGraph + "\" class=\"img-responsive\" width=\"776\" height=\"600\" alt=>";
+        console.log(result);
+        $(".graph").append(result);
+
+    }
 });
+// $('.dropdown-menu li').click(function(event) {
+//
+//   var clickSelect =  $(this).attr("data-id");
+//     console.log(clickSelect);
+//
+//     switch (clickSelect) {
+//       case 'bearCreek': $(".flow_title").text(bear.bearLocal);
+//       $(".flow_rate").text(bear.bear.value.timeSeries[0].values[0].value[0].value);
+//
+//       break;
+//
+//       case 'clearCreek': $(".flow_title").text(clearCreek.clearLocal);
+//       break;
+//
+//       case 'deckersR': $(".flow_title").text(deckers.deckersLocal);
+//       break;
+//
+//       case 'bigT': $(".flow_title").text(thompson.thompsonLocal);
+//         break;
+//       default:
+//
+//     }
+// append the information to the DOM
+//     });
+//     var bearURL = "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06710605&parameterCd=00060&siteType=ST&siteStatus=all";
+//     $.get().then(function(data) {
+//
+//         var flow =  data.value.timeSeries[0].values[0].value[0].value;
+//         console.log(flow);
+//         showFlow(flow);
+//         console.log(data);
+//     });
+//
+    function showFlow(flow) {
+        $(".flow_title").html('<span class="poop">' + flow + '</span>');
+    }
+// });
