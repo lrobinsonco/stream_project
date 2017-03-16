@@ -133,6 +133,20 @@ function init() {
     });
 }
 
+var mapPoints= [
+  { id: "06716500", map: [39.765833, -105.625556]
+  // clearcreek
+},
+  { id: "06701900", map: [39.26, -105.221389]
+    // deckers
+  },
+  { id: "06710605", map: [39.651944, -105.173056]
+    // bear
+  },
+  { id: "06741510", map: [40.378611, -105.060556]
+    // thompson
+  }
+];
 
 var clear = {
     clearLocal: "Clear Creek at Lawson, CO"
