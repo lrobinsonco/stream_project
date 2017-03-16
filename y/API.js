@@ -162,7 +162,7 @@ $(document).ready(function() {
         event.preventDefault();
         $(".graph").empty();
         var clickSelect = $(this).attr("data-id");
-        // console.log(clickSelect);
+        console.log(clickSelect);
         flowInfo(clickSelect);
         graphInfo(clickSelect);
 

@@ -131,29 +131,31 @@ function init() {
     });
 }
 
-var clearCreek = {
+var clear = {
     clearMap: (39.765833, -105.625556),
     clearLocal: "Clear Creek at Lawson, CO"
 };
+
 
 var deckers = {
     deckersMap: (39.26, -105.221389),
     deckersLocal: "South Platte near Trumbull, CO"
 };
 
+
 var thompson = {
     thompsonMap: (40.378611, -105.060556),
     thompsonLocal: "Big Thompson near Loveland"
 };
+
 
 var bear = {
     bearMap: (39.651944, -105.173056),
     bearLocal: "Bear creek at Morrison, CO"
 };
 
-// State of Colorado Water Data
-// var waterData = "https://data.colorado.gov/resource/a97x-8zfv.json";
 
+// var waterData = "https://data.colorado.gov/resource/a97x-8zfv.json";
 
 $(document).ready(function() {
     console.log("ready");
@@ -161,23 +163,23 @@ $(document).ready(function() {
     $('.dropdown-menu li').click(function(event) {
         event.preventDefault();
         $(".graph").empty();
+        $(".location").empty();
         var clickSelect = $(this).attr("data-id");
         // console.log(clickSelect);
         flowInfo(clickSelect);
         graphInfo(clickSelect);
-
         switch (clickSelect) {
           case '06710605':
-           console.log($(".location").append("<h1>" + bear.bearLocal + "</h1>"));
+           $(".location").append("<h1>" + bear.bearLocal + "</h1>");
           break;
 
-          case '06716500': $(".location").text(clear.clearLocal);
+          case '06716500': $(".location").append("<h1>" + clear.clearLocal + "</h1>");
           break;
 
-          case '06701900': $(".location").text(deckers.deckerdeckersLocal);
+          case '06701900': $(".location").append("<h1>" + deckers.deckersLocal + "</h1>");
           break;
 
-          case '06741510': $(".location").text(thompson.thompsonLocal);
+          case '06741510': $(".location").append("<h1>" + thompson.thompsonLocal + "</h1>");
             break;
           default:
           $(".location").text("no data");
@@ -204,39 +206,41 @@ $(document).ready(function() {
 
     }
     function showFlow(flow) {
-        $(".flow_rate").html('<span class="rate">' + flow + '</span>');
+        $(".flow_rate").html('<span class="poop">' + flow + '</span>');
     }
-    // function streamLocal(clickSelect) {
-    //   switch (clickSelect) {
-    //     case '06710605':
-    //      $(".stream_name").text(riverLocal.bearLocal);
-    //     break;
-    //
-    //     case '06716500': $(".stream_name").text(riverLocal.clearLocal);
-    //     break;
-    //
-    //     case '06701900': $(".stream_name").text(riverLocal.deckersLocal);
-    //     break;
-    //
-    //     case '06741510': $(".stream_name").text(riverLocal.thompsonLocal);
-    //       break;
-    //     default:
-    //     $(".flow_title").text("no data");
-    //   }
-    // }
 });
-
+// $('.dropdown-menu li').click(function(event) {
+//
+//   var clickSelect =  $(this).attr("data-id");
+//     console.log(clickSelect);
+//
+//     switch (clickSelect) {
+//       case 'bearCreek': $(".flow_title").text(bear.bearLocal);
+//       $(".flow_rate").text(bear.bear.value.timeSeries[0].values[0].value[0].value);
+//
+//       break;
+//
+//       case 'clearCreek': $(".flow_title").text(clearCreek.clearLocal);
+//       break;
+//
+//       case 'deckersR': $(".flow_title").text(deckers.deckersLocal);
+//       break;
+//
+//       case 'bigT': $(".flow_title").text(thompson.thompsonLocal);
+//         break;
+//       default:
+//
+//     }
 // append the information to the DOM
 //     });
 //     var bearURL = "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06710605&parameterCd=00060&siteType=ST&siteStatus=all";
-
-    // $.get("https://data.colorado.gov/resource/a97x-8zfv.json").then(function(data) {
-    //
-    //     var flow =  data.value.timeSeries[0].values[0].value[0].value;
-    //     console.log(flow);
-    //     showFlow(flow);
-    //     console.log(data);
-    // });
+//     $.get().then(function(data) {
+//
+//         var flow =  data.value.timeSeries[0].values[0].value[0].value;
+//         console.log(flow);
+//         showFlow(flow);
+//         console.log(data);
+//     });
 //
 
 // });
