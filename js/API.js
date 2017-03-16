@@ -163,7 +163,9 @@ var bear = {
 };
 
 
+
 // var waterData = "https://data.colorado.gov/resource/a97x-8zfv.json";
+
 
 $(document).ready(function() {
     console.log("ready");
@@ -175,6 +177,23 @@ $(document).ready(function() {
         // console.log(clickSelect);
         flowInfo(clickSelect);
         graphInfo(clickSelect);
+        var riverLocal = {bearLocal: "Bear creek at Morrison, CO", thompsonLocal: "Big Thompson near Loveland", deckersLocal: "South Platte near Trumbull, CO", clearLocal: "Clear Creek at Lawson, CO"};
+        switch (clickSelect) {
+          case '06710605':
+           $(".location").text("Bear creek at Morrison, CO");
+          break;
+
+          case '06716500': $(".location").text(riverLocal.clearLocal);
+          break;
+
+          case '06701900': $(".location").text(riverLocal.deckersLocal);
+          break;
+
+          case '06741510': $(".location").text(riverLocal.thompsonLocal);
+            break;
+          default:
+          $(".location").text("no data");
+        }
     });
 
 
@@ -197,31 +216,28 @@ $(document).ready(function() {
 
     }
     function showFlow(flow) {
-        $(".flow_rate").html('<span class="poop">' + flow + '</span>');
+        $(".flow_rate").html('<span class="rate">' + flow + '</span>');
     }
+    // function streamLocal(clickSelect) {
+    //   switch (clickSelect) {
+    //     case '06710605':
+    //      $(".stream_name").text(riverLocal.bearLocal);
+    //     break;
+    //
+    //     case '06716500': $(".stream_name").text(riverLocal.clearLocal);
+    //     break;
+    //
+    //     case '06701900': $(".stream_name").text(riverLocal.deckersLocal);
+    //     break;
+    //
+    //     case '06741510': $(".stream_name").text(riverLocal.thompsonLocal);
+    //       break;
+    //     default:
+    //     $(".flow_title").text("no data");
+    //   }
+    // }
 });
-// $('.dropdown-menu li').click(function(event) {
-//
-//   var clickSelect =  $(this).attr("data-id");
-//     console.log(clickSelect);
-//
-//     switch (clickSelect) {
-//       case 'bearCreek': $(".flow_title").text(bear.bearLocal);
-//       $(".flow_rate").text(bear.bear.value.timeSeries[0].values[0].value[0].value);
-//
-//       break;
-//
-//       case 'clearCreek': $(".flow_title").text(clearCreek.clearLocal);
-//       break;
-//
-//       case 'deckersR': $(".flow_title").text(deckers.deckersLocal);
-//       break;
-//
-//       case 'bigT': $(".flow_title").text(thompson.thompsonLocal);
-//         break;
-//       default:
-//
-//     }
+
 // append the information to the DOM
 //     });
 //     var bearURL = "https://waterservices.usgs.gov/nwis/iv/?format=json&indent=on&sites=06710605&parameterCd=00060&siteType=ST&siteStatus=all";
