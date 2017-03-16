@@ -1,3 +1,5 @@
+// google map functions not used
+
 // var map = null;
 // google.maps.event.addDomListener(window, 'load', init);
 // google.maps.event.addDomListener(window, 'resize', function() {
@@ -5,7 +7,7 @@
 // });
 //
 // })
-
+// <-google map->
 function init() {
     var mapOptions = {
         zoom: 12,
@@ -133,20 +135,6 @@ function init() {
     });
 }
 
-var mapPoints= [
-  { id: "06716500", map: [39.765833, -105.625556]
-  // clearcreek
-},
-  { id: "06701900", map: [39.26, -105.221389]
-    // deckers
-  },
-  { id: "06710605", map: [39.651944, -105.173056]
-    // bear
-  },
-  { id: "06741510", map: [40.378611, -105.060556]
-    // thompson
-  }
-];
 
 var clear = {
     clearLocal: "Clear Creek at Lawson, CO"
@@ -164,9 +152,13 @@ var bear = {
     bearLocal: "Bear creek at Morrison, CO"
 };
 
+var location = {
+  clearLocal: "Clear Creek at Lawson, CO", bearLocal: "Bear creek at Morrison, CO", thompsonLocal: "Big Thompson near Loveland", deckersLocal: "South Platte near Trumbull, CO",
+};
 
 // var waterData = "https://data.colorado.gov/resource/a97x-8zfv.json";
 
+// <-main js->
 $(document).ready(function() {
     init();
     console.log("ready");
@@ -182,16 +174,16 @@ $(document).ready(function() {
         setMap(clickSelect);
         switch (clickSelect) {
           case '06710605':
-           $(".location").append("<h1>" + bear.bearLocal + "</h1>");
+           $(".location").append("<h1>" + location.bear.bearLocal + "</h1>");
           break;
 
-          case '06716500': $(".location").append("<h1>" + clear.clearLocal + "</h1>");
+          case '06716500': $(".location").append("<h1>" + location.clear.clearLocal + "</h1>");
           break;
 
-          case '06701900': $(".location").append("<h1>" + deckers.deckersLocal + "</h1>");
+          case '06701900': $(".location").append("<h1>" + locaton.deckers.deckersLocal + "</h1>");
           break;
 
-          case '06741510': $(".location").append("<h1>" + thompson.thompsonLocal + "</h1>");
+          case '06741510': $(".location").append("<h1>" + location.thompson.thompsonLocal + "</h1>");
             break;
           default:
           $(".location").text("no data");
