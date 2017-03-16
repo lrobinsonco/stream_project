@@ -50,6 +50,7 @@ p {
         font-size: 20px;
         line-height: 1.6
     }
+
 }
 
 a {
@@ -277,6 +278,9 @@ a:focus, a:hover {
     #map {
         height: 400px;
         margin-top: 20px
+    }
+    .graph {
+      margin: 0 auto;
     }
 }
 
