@@ -1,8 +1,10 @@
-var map = null;
-google.maps.event.addDomListener(window, 'load', init);
-google.maps.event.addDomListener(window, 'resize', function() {
-    map.setCenter(new google.maps.LatLng(38.840871, -105.042259));
-});
+// var map = null;
+// google.maps.event.addDomListener(window, 'load', init);
+// google.maps.event.addDomListener(window, 'resize', function() {
+//     map.setCenter(new google.maps.LatLng(38.840871, -105.042259));
+// });
+//
+// })
 
 function init() {
     var mapOptions = {
@@ -131,26 +133,34 @@ function init() {
     });
 }
 
+var mapPoints= [
+  { id: "06716500", map: [39.765833, -105.625556]
+  // clearcreek
+},
+  { id: "06701900", map: [39.26, -105.221389]
+    // deckers
+  },
+  { id: "06710605", map: [39.651944, -105.173056]
+    // bear
+  },
+  { id: "06741510", map: [40.378611, -105.060556]
+    // thompson
+  }
+];
+
 var clear = {
-    clearMap: (39.765833, -105.625556),
     clearLocal: "Clear Creek at Lawson, CO"
 };
 
-
 var deckers = {
-    deckersMap: (39.26, -105.221389),
     deckersLocal: "South Platte near Trumbull, CO"
 };
 
-
 var thompson = {
-    thompsonMap: (40.378611, -105.060556),
     thompsonLocal: "Big Thompson near Loveland"
 };
 
-
 var bear = {
-    bearMap: (39.651944, -105.173056),
     bearLocal: "Bear creek at Morrison, CO"
 };
 
@@ -158,6 +168,7 @@ var bear = {
 // var waterData = "https://data.colorado.gov/resource/a97x-8zfv.json";
 
 $(document).ready(function() {
+    init();
     console.log("ready");
     //select element
     $('.dropdown-menu li').click(function(event) {
@@ -165,9 +176,10 @@ $(document).ready(function() {
         $(".graph").empty();
         $(".location").empty();
         var clickSelect = $(this).attr("data-id");
-        // console.log(clickSelect);
+        console.log(clickSelect);
         flowInfo(clickSelect);
         graphInfo(clickSelect);
+        setMap(clickSelect);
         switch (clickSelect) {
           case '06710605':
            $(".location").append("<h1>" + bear.bearLocal + "</h1>");
@@ -185,7 +197,152 @@ $(document).ready(function() {
           $(".location").text("no data");
         }
     });
-
+    function setMap(clickSelect) {
+      var mapPoints= [
+        { id: "06716500", map: [39.765833, -105.625556]
+        // clearcreek
+      },
+        { id: "06701900", map: [39.26, -105.221389]
+          // deckers
+        },
+        { id: "06710605", map: [39.651944, -105.173056]
+          // bear
+        },
+        { id: "06741510", map: [40.378611, -105.060556]
+          // thompson
+        }
+      ];
+      var longLat= [];
+      for(i=0; i < mapPoints.length; i++){
+        if(mapPoints[i].id === clickSelect){
+          longLat = mapPoints[i].map;
+        }
+      }
+      var mapOptions = {
+          zoom: 12,
+          center: new google.maps.LatLng(longLat[0], longLat[1]),
+          disableDefaultUI: true,
+          scrollwheel: false,
+          draggable: true,
+          styles: [{
+              "featureType": "water",
+              "elementType": "geometry",
+              "stylers": [{
+                  "color": "#0000FF"
+              }, {
+                  "lightness": 17
+              }]
+          }, {
+              "featureType": "landscape",
+              "elementType": "geometry",
+              "stylers": [{
+                  "color": "#000000"
+              }, {
+                  "lightness": 20
+              }]
+          }, {
+              "featureType": "road.highway",
+              "elementType": "geometry.fill",
+              "stylers": [{
+                  "color": "#F8F8FF"
+              }, {
+                  "lightness": 17
+              }]
+          }, {
+              "featureType": "road.highway",
+              "elementType": "geometry.stroke",
+              "stylers": [{
+                  "color": "#F8F8FF"
+              }, {
+                  "lightness": 29
+              }, {
+                  "weight": 0.2
+              }]
+          }, {
+              "featureType": "road.arterial",
+              "elementType": "geometry",
+              "stylers": [{
+                  "color": "#F8F8FF"
+              }, {
+                  "lightness": 18
+              }]
+          }, {
+              "featureType": "road.local",
+              "elementType": "geometry",
+              "stylers": [{
+                  "color": "#F8F8FF"
+              }, {
+                  "lightness": 16
+              }]
+          }, {
+              "featureType": "poi",
+              "elementType": "geometry",
+              "stylers": [{
+                  "color": "#000000"
+              }, {
+                  "lightness": 21
+              }]
+          }, {
+              "elementType": "labels.text.stroke",
+              "stylers": [{
+                  "visibility": "on"
+              }, {
+                  "color": "#000000"
+              }, {
+                  "lightness": 16
+              }]
+          }, {
+              "elementType": "labels.text.fill",
+              "stylers": [{
+                  "saturation": 36
+              }, {
+                  "color": "#FFFFFF"
+              }, {
+                  "lightness": 40
+              }]
+          }, {
+              "elementType": "labels.icon",
+              "stylers": [{
+                  "visibility": "off"
+              }]
+          }, {
+              "featureType": "transit",
+              "elementType": "geometry",
+              "stylers": [{
+                  "color": "#000000"
+              }, {
+                  "lightness": 19
+              }]
+          }, {
+              "featureType": "administrative",
+              "elementType": "geometry.fill",
+              "stylers": [{
+                  "color": "#000000"
+              }, {
+                  "lightness": 20
+              }]
+          }, {
+              "featureType": "administrative",
+              "elementType": "geometry.stroke",
+              "stylers": [{
+                  "color": "#000000"
+              }, {
+                  "lightness": 17
+              }, {
+                  "weight": 1.2
+              }]
+          }]
+      };
+      var mapElement = document.getElementById('map');
+      map = new google.maps.Map(mapElement, mapOptions);
+      var image = 'img/map-marker.png';
+      var myLatLng = new google.maps.LatLng(longLat[0], longLat[1]);
+      var beachMarker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          icon: image
+      });
+    }
 
     function flowInfo(clickSelect) {
 
