@@ -208,8 +208,8 @@ var colK = {
   colKlocal: "Colorado at Kremmling"
 };
 
-var colS = {
-  colSlocal: "Colorado at State Bridge"
+var eagle = {
+  eagleLocal: "Eagle River at Minturn"
 };
 
 var willFork = {
@@ -264,7 +264,7 @@ $(document).ready(function() {
           case '09058000': $(".location").append("<h1>" + colK.colKlocal + "</h1>");
           break;
 
-          case '09059500': $(".location").append("<h1>" + colS.colSlocal + "</h1>");
+          case '09064600': $(".location").append("<h1>" + eagle.eagleLocal + "</h1>");
           break;
 
           case '09037500': $(".location").append("<h1>" + willFork.wForklocal + "</h1>");
@@ -306,8 +306,8 @@ $(document).ready(function() {
         { id: "09058000", map: [40.036667, -106.439444]
           //colK
         },
-        { id: "09059500", map: [39.7906, -106.640167]
-          //colS
+        { id: "09064600", map: [39.7906, -106.640167]
+          //eagle
         },
         { id: "09037500", map: [40.0002, -106.180367]
           //wFork
