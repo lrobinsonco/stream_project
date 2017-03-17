@@ -145,7 +145,31 @@ var mapPoints= [
   },
   { id: "06741510", map: [40.378611, -105.060556]
     // thompson
-  }
+  },
+  { id: "07087050", map: [38.995, -106.219722]
+    //arkG
+  },
+  { id: "07091200", map: [38.652222,  -106.050556]
+    //arkN
+  },
+  { id: "07096250", map: [38.663889,  -105.2275]
+    //fourmile
+  },
+  { id: "07099970", map: [38.253611, -104.605556]
+    //pueblo
+  },
+  { id: "09058000", map: [40.036667, -106.439444]
+    //colK
+  },
+  { id: "09059500", map: [39.7906, -106.640167]
+    //colS
+  },
+  { id: "09037500", map: [40.0002, -106.180367]
+    //wFork
+  },
+  { id: "09046600", map: [39.625556, -106.065833]
+    //blue
+  },
 ];
 
 var clear = {
@@ -164,6 +188,37 @@ var bear = {
     bearLocal: "Bear creek at Morrison, CO"
 };
 
+var arkG = {
+  arkGlocal: "Arkansas below Granite"
+};
+
+var arkN = {
+  arkNlocal: "Arkansas at Nathrop"
+};
+
+var fourmile = {
+  fourmileLocal: "Fourmile creek near Victor"
+};
+
+var pueblo = {
+  puebloLocal: "Arkansas in Pueblo"
+};
+
+var colK = {
+  colKlocal: "Colorado at Kremmling"
+};
+
+var colS = {
+  colSlocal: "Colorado at State Bridge"
+};
+
+var willFork = {
+  wForklocal: "Williams Fork at Parshall"
+};
+
+var blueR = {
+  blueLocal: "Blue river in Dillion"
+};
 
 // var waterData = "https://data.colorado.gov/resource/a97x-8zfv.json";
 
@@ -193,6 +248,31 @@ $(document).ready(function() {
 
           case '06741510': $(".location").append("<h1>" + thompson.thompsonLocal + "</h1>");
             break;
+
+          case '07087050': $(".location").append("<h1>" + arkG.arkGlocal + "</h1>");
+          break;
+
+          case '07091200': $(".location").append("<h1>" + arkN.arkNlocal + "</h1>");
+          break;
+
+          case '07096250': $(".location").append("<h1>" + fourmile.fourmileLocal + "</h1>");
+          break;
+
+          case '07099970': $(".location").append("<h1>" + pueblo.puebloLocal + "</h1>");
+          break;
+
+          case '09058000': $(".location").append("<h1>" + colK.colKlocal + "</h1>");
+          break;
+
+          case '09059500': $(".location").append("<h1>" + colS.colSlocal + "</h1>");
+          break;
+
+          case '09037500': $(".location").append("<h1>" + willFork.wForklocal + "</h1>");
+          break;
+
+          case '09046600': $(".location").append("<h1>" + blueR.blueLocal + "</h1>");
+          break;
+
           default:
           $(".location").text("no data");
         }
@@ -210,7 +290,31 @@ $(document).ready(function() {
         },
         { id: "06741510", map: [40.378611, -105.060556]
           // thompson
-        }
+        },
+        { id: "07087050", map: [38.995, -106.219722]
+          //arkG
+        },
+        { id: "07091200", map: [38.652222,  -106.050556]
+          //arkN
+        },
+        { id: "07096250", map: [38.663889,  -105.2275]
+          //fourmile
+        },
+        { id: "07099970", map: [38.253611, -104.605556]
+          //pueblo
+        },
+        { id: "09058000", map: [40.036667, -106.439444]
+          //colK
+        },
+        { id: "09059500", map: [39.7906, -106.640167]
+          //colS
+        },
+        { id: "09037500", map: [40.0002, -106.180367]
+          //wFork
+        },
+        { id: "09046600", map: [39.625556, -106.065833]
+          //blue
+        },
       ];
       var longLat= [];
       for(i=0; i < mapPoints.length; i++){
